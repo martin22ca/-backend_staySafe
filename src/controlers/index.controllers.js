@@ -10,7 +10,7 @@ const getUsers = async (req,res) => {
 }
 
 const getCrimes = async (req,res) => {
-    const resposne = await pool.query("select * from crimes");
+    const resposne = await pool.query("select latitude as lat, longitude as lng from crimes");
     res.send(resposne.rows);
 }
 
