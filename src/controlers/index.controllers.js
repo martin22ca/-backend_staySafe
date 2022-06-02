@@ -1,17 +1,7 @@
 const { Pool } = require('pg');
 //netifly
 
-const pool = new Pool({
-    host: "ec2-54-165-90-230.compute-1.amazonaws.com",
-    user: "qkbkeqsjobjgiq",
-    port: 5432,
-    password: "d693d1b8d929b1c91e9a0148735408a5edd5d3b78ebef678b0fb443556a39780",
-    database: "d3bjn19bl5prqr",
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false}
-    }
-);
+const pool = require('../db')
 pool.connect();
 
 const getUsers = async (req,res) => {
