@@ -15,7 +15,7 @@ const getCrimesLoc = async (req,res) => {
 }
 
 const getCrimes = async (req,res) => {
-    const resposne = await pool.query("select *  from crimes");
+    const resposne = await pool.query("select * from crimes");
     res.send(resposne.rows);
 }
 
