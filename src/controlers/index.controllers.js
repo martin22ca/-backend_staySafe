@@ -14,8 +14,8 @@ const getCrimesLoc = async (req,res) => {
     res.send(resposne.rows);
 }
 
-const getCrimes = async (req,res) => {
-    const resposne = await pool.query("select * from crimes");
+const getCrimesTypes = async (req,res) => {
+    const resposne = await pool.query("select crime_type, count(id) from crimes group by crime_type ");
     res.send(resposne.rows);
 }
 
@@ -40,6 +40,6 @@ const post_event = async (req, res, next) => {
 module.exports = {
     getUsers,
     getCrimesLoc,
-    getCrimes,
+    getCrimesTypes,
     post_event
 }
