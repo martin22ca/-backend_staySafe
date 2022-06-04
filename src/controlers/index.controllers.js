@@ -9,8 +9,13 @@ const getUsers = async (req,res) => {
     res.send(resposne.rows);
 }
 
-const getCrimes = async (req,res) => {
+const getCrimesLoc = async (req,res) => {
     const resposne = await pool.query("select latitude as lat, longitude as lng from crimes");
+    res.send(resposne.rows);
+}
+
+const getCrimes = async (req,res) => {
+    const resposne = await pool.query("select *  from crimes");
     res.send(resposne.rows);
 }
 
@@ -34,6 +39,7 @@ const post_event = async (req, res, next) => {
 
 module.exports = {
     getUsers,
+    getCrimesLoc,
     getCrimes,
     post_event
 }
