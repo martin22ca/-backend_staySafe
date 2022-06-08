@@ -11,19 +11,18 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api', createProxyMiddleware({ 
-    target: 'http://localhost:3001/', //original url
-    changeOrigin: true, 
-    //secure: false,
-    onProxyRes: function (proxyRes, req, res) {
-       proxyRes.headers['Access-Control-Allow-Origin'] = '*';
-    }
-}));
-
 
 // Routes
 app.use(require("./routes/index"));
 
+
+
+app.get('/post', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.send({ "msg": "This has CORS enabled 🎈" })
+    })
+
+    
 // handling errors
 //el next permite como saltar a otra funcion y que continue en otro lado
 //esto quiere decir que es una funcion que se va a llamar cuando un error ocurra en un post de http
