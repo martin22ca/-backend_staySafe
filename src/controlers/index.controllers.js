@@ -29,7 +29,8 @@ const post_event = async (req, res, next) => {
             "INSERT INTO crimes(userid, latitude, longitude, description, address, crime_type) VALUES($1, $2, $3, $4, $5, $6)",
             [userid, latitude, longitude, description, address, type]
         );
-
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(resposne.rows);
         console.log(resposne.rows)
 
     } catch (error) {
