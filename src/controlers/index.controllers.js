@@ -16,6 +16,7 @@ const getCrimesLoc = async (req, res) => {
 
 const getCrimesTypes = async (req, res) => {
     var id = req.query.id;
+    id = ("'"+id+"'");
     const resposne = await pool.query("select crime_type, count(id),max(time_of_crime) from crimes where time_of_crime < date_trunc('day', current_date-interval $1 day) group by crime_type ",
         [id]
     );
