@@ -4,21 +4,21 @@ const { Pool } = require('pg');
 const pool = require('../db')
 pool.connect();
 
-const getUsers = async (req,res) => {
+const getUsers = async (req, res) => {
     const resposne = await pool.query("select * from users");
     res.send(resposne.rows);
 }
 
-const getCrimesLoc = async (req,res) => {
+const getCrimesLoc = async (req, res) => {
     const resposne = await pool.query("select latitude as lat, longitude as lng from crimes");
     res.send(resposne.rows);
 }
 
-const getCrimesTypes = async (req,res) => {
+const getCrimesTypes = async (req, res) => {
     var id = req.query.id;
-        const resposne = await pool.query("select crime_type, count(id),max(time_of_crime) from crimes where time_of_crime < date_trunc('day', current_date-interval $1 day) group by crime_type ",
+    const resposne = await pool.query("select crime_type, count(id),max(time_of_crime) from crimes where time_of_crime < date_trunc('day', current_date-interval $1 day) group by crime_type ",
         [id]
-        );
+    );
     res.send(resposne.rows);
 }
 
